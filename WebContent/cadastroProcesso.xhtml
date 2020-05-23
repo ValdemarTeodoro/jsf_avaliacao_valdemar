@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Cadastro de Processo</title>
+</h:head>
+<h:body>
+<h:form>
+	<h:commandLink value="Menu" action="menu.xhtml" immediate="true"/>
+	<h1>Cadastro de Processo</h1>
+<h:messages/>
+<h:panelGrid columns="2">
+
+	<h:outputText value="Número do Processo: *"/>
+	<h:inputText value="#{processoControllerValdemar.processoValdemar.numeroProc}"
+		required="true"
+		requiredMessage="O campo número do processo é obrigatório!">
+		<f:validateLength maximum="15"/>
+	</h:inputText>
+		
+	<h:outputText value="Interessado: *"/>
+	<h:selectOneMenu value="#{processoControllerValdemar.interessadoSelecionado}"
+		converter="interessadoConverter"
+		required="true"
+		requiredMessage="O campo interessado é obrigatório!">
+		<f:selectItem itemLabel="SELECIONE"/>
+		<f:selectItems value="#{interessadoControllerValdemar.lista}"
+			var="interessado"
+			itemLabel="#{interessado.nomeInteressado}"
+			itemValue="#{interessado}"/>
+	</h:selectOneMenu>
+	
+	<h:outputText value="Assunto: *"/>
+	<h:inputText value="#{processoControllerValdemar.processoValdemar.assuntoProc}"
+		required="true"
+		requiredMessage="O campo assunto é obrigatório!">
+		<f:validateLength maximum="20"/>
+	</h:inputText>
+
+	<h:outputText value="Data do Processo: *"/>
+	<h:inputText value="#{processoControllerValdemar.processoValdemar.dataAutuacaoProc}"
+		required="true"
+		requiredMessage="O campo data do processo é obrigatório!">
+		<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+	</h:inputText>
+	
+	<h:outputText value="Valor: *"/>
+	<h:inputText value="#{processoControllerValdemar.processoValdemar.valorProc}"
+		required="true"
+		requiredMessage="O campo valor é obrigatório!">
+		<f:validateDoubleRange minimum="5.01" maximum="500.99"/>
+	</h:inputText>
+	
+	<h:commandButton value="Salvar" action="#{processoControllerValdemar.salvar}"/>
+	<h:commandButton value="Limpar" action="cadastroProcesso.xhtml" actionListener="#{processoControllerValdemar.limparCampos}"/>
+
+</h:panelGrid>
+</h:form>
+</h:body>
+</html>

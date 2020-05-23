@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Listagem de Interessados</title>
+</h:head>
+<h:body>
+<h:form>
+<h:commandLink value="MENU" action="menu.xhtml" immediate="true"/>
+<h1>Listagem de Interessados</h1>
+<h:messages/>
+<h:dataTable border="1" value="#{interessadoControllerValdemar.lista}" var="interessado">
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="ID"/>
+		</f:facet>
+		<h:outputText value="#{interessado.id}"/>
+	</h:column>
+	
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="Nome"/>
+		</f:facet>
+		<h:outputText value="#{interessado.nomeInteressado}"/>
+	</h:column>
+	
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="CPF"/>
+		</f:facet>
+		<h:outputText value="#{interessado.cpfInteressado}"/>
+	</h:column>
+	
+	
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="Ação"/>
+		</f:facet>
+		<h:commandButton value="Editar" action="#{interessadoControllerValdemar.editar}">
+			<f:setPropertyActionListener value="#{interessado}" target="#{interessadoControllerValdemar.interessado}"/>
+		</h:commandButton>
+		<h:commandButton value="Excluir" onclick="return confirm('Confrima a exclusão?')" action="#{interessadoControllerValdemar.excluir}">
+			<f:setPropertyActionListener value="#{interessado}" target="#{interessadoControllerValdemar.interessado}"/>
+		</h:commandButton>
+	</h:column>
+
+</h:dataTable>
+</h:form>
+</h:body>
+</html>

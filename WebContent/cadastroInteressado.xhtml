@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<h:head>
+	<title>Cadastro de Interessado </title>
+</h:head>
+<h:body>
+<h:form>
+	<h:commandLink value="MENU" action="menu.xhtml" immediate="true"/>
+	<h1>Cadastro de Interessado</h1>
+<h:messages/>
+<h:panelGrid columns="2">
+
+	<h:outputText value="Nome do Interessado: *"/>
+	<h:inputText value="#{interessadoControllerValdemar.interessado.nomeInteressado}"
+		required="true"
+		requiredMessage="O campo nome interessado é obrigatório!">
+		<f:validateLength maximum="50"/>
+	</h:inputText>
+
+	<h:outputText value="Cpf do Interessado: *"/>
+	<h:inputText value="#{interessadoControllerValdemar.interessado.cpfInteressado}"
+		required="true"
+		requiredMessage="O campo cpf do interessado é obrigatório!">
+		<f:validateLength maximum="11"/>
+	</h:inputText>
+	
+	<h:commandButton value="Salvar" action="#{interessadoControllerValdemar.salvar}"/>
+	<h:commandButton value="Limpar" action="cadastroInteressado.xhtml" actionListener="#{interessadoControllerValdemar.limparCampos}"/>
+
+</h:panelGrid>
+</h:form>
+</h:body>
+</html>
